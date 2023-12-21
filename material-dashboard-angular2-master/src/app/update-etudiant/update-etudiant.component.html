@@ -1,0 +1,150 @@
+<!-- Stylesheet Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Scripts Bootstrap JS (jQuery doit être inclus avant Bootstrap JS) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a routerLink="/features" class="nav-link">Accueil</a>
+  </li>
+    <li class="nav-item">
+      <button (click)=" goToEtudiantList()" class="btn btn-link nav-link">Etudiant List</button>
+    </li>
+    
+    <li class="nav-item">
+            <a routerLink="/create-etudiant" routerLinkActive="active" class="nav-link">Add Etudiant</a>
+        </li> 
+  </ul>
+</nav>
+<div [@fadeInOut]="showSuccessAnimation ? 'visible' : 'hidden'">
+    <!-- Contenu avec animation fadeInOut -->
+    <form [formGroup]="etudiantForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="text-center">Update Etudiant </h3>
+        <form [formGroup]="etudiantForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+       <!-- <form [formGroup]="etudiantForm" enctype="multipart/form-data"-->
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="nomEt">Nom</label>
+              <input type="text" class="form-control" id="nomEt" formControlName="nomEt" placeholder="Entrez le nom d'etudiant" [(ngModel)]="etudiant.nomEt">
+              <small *ngIf="etudiantForm.controls.nomEt.valid">
+                <span style="color: green;">Nom d'etudiant est valide.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.nomEt.errors?.required">
+                <span style="color: red;">Nom d'etudiant est obligatoire.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.nomEt.errors?.maxlength">
+                <span style="color: red;">Le nom de l'étudiant ne doit pas dépasser 20 caractères.</span>
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prénom -->
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="prenomEt">Prénom</label>
+              <input type="text" class="form-control" id="prenomEt" formControlName="prenomEt" placeholder="Entrez le prénom d'etudiant" [(ngModel)]="etudiant.prenomEt">
+              <small *ngIf="etudiantForm.controls.prenomEt.valid">
+                <span style="color: green;">Prénom d'etudiant est valide.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.prenomEt.errors?.required">
+                <span style="color: red;">Prénom d'etudiant est obligatoire.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.prenomEt.errors?.maxlength">
+                <span style="color: red;">Le prénom de l'étudiant ne doit pas dépasser 20 caractères.</span>
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- CIN -->
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="cin">CIN</label>
+              <input type="number" class="form-control" id="cin" formControlName="cin" placeholder="Entrez le cin d'etudiant" [(ngModel)]="etudiant.cin">
+              <small *ngIf="etudiantForm.controls.cin.valid">
+                <span style="color: green;">CIN d'etudiant est valide.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.cin.errors?.required">
+                <span style="color: red;">Cin d'etudiant est obligatoire.</span>
+              </small>
+        
+              <small *ngIf="etudiantForm.controls.cin.errors?.pattern">
+                <span style="color: red;">Le CIN doit avoir au plus 8 chiffres.</span>
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ecole -->
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="ecole">Ecole</label>
+              <input type="text" class="form-control" id="ecole" formControlName="ecole" placeholder="Entrez l'ecole" [(ngModel)]="etudiant.ecole">
+              <small *ngIf="etudiantForm.controls.ecole.valid">
+                <span style="color: green;">Nom d'ecole valide.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.ecole.errors?.required">
+                <span style="color: red;">Nom d'ecole est obligatoire.</span>
+              </small>
+              <small *ngIf="etudiantForm.controls.ecole.errors?.maxlength">
+                <span style="color: red;">Le nom de l'école ne doit pas dépasser 20 caractères.</span>
+              </small>
+            </div>
+          </div>
+        </div>
+   <!-- Ecole -->
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <!-- ... other form controls ... -->
+
+      <label for="dateNaissance">Date De Naissance</label>
+      <input type="date" class="form-control" id="dateNaissance" formControlName="dateNaissance" placeholder="Entrez votre date de Naissance" [(ngModel)]="etudiant.dateNaissance">
+      <small *ngIf="etudiantForm.controls.dateNaissance.valid">
+        <span style="color: green;">Date De Naissance est valide</span>
+      </small>
+      <small *ngIf="etudiantForm.controls.dateNaissance.errors?.required">
+        <span style="color: red;">Le date de naissance est obligatoire.</span>
+      </small>
+      <small *ngIf="etudiantForm.controls.dateNaissance.errors?.invalidAge" class="invalid-feedback d-block">
+        L'âge doit être supérieur à 18 ans.
+    </small>
+    </div>
+  </div>
+</div>
+
+<div class="row pt-2">
+    <div class="col-6">
+      <label>Image</label>
+    </div>
+    <div>
+      <input type="file" id="file" accept="image/*" (change)="onSelectFile($event)" class="form-control-file" />
+      <img class="rounded-circle border" [src]="image" alt="Image Preview" width="120" height="120">
+    </div>
+  </div>
+  <div class="row pt-2">
+    <div class="col-6">
+      <button class="btn btn-primary" type="button" (click)="generatePDF()">Télécharger le formulaire PDF</button>
+    </div>
+  <div class="row pt-2">
+    <div class="col-6 offset-3">
+      <button class="btn btn-success" type="submit" [disabled]="etudiantForm.invalid">Modifier</button>
+    </div>
+  </div>
+
+<div *ngIf="successMessage" [@fadeInOut] class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+
+</div>

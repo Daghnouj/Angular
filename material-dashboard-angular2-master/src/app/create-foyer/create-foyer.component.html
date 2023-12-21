@@ -1,0 +1,109 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <li class="nav-item">
+                            <a routerLink="/features" class="nav-link">Accueil</a>
+                        </li>
+                        <h4 class="card-title">Ajouter Foyer</h4>
+                        <p class="card-category">Ajoutez les coordonnées</p>
+                    </div>
+                    <div [@fadeInOut] class="card-body">
+                        <form [formGroup]="foyerForm" (ngSubmit)="OnSubmit()">
+                            
+                           <div class="row">
+                                <div class="col-md-5">
+                                
+                                      <input matInput placeholder="Foyer (disabled)" disabled>
+                                      <br>
+                                  <br>
+                                  <br>
+                                </div>
+                             
+                              </div>
+                           
+                            
+                            
+                            <!--<div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <label>ID Foyer:</label>
+                                    <input matInput placeholder="Entrez  l'id de foyer " type="number">
+                                  </mat-form-field>
+                                </div>
+                               
+                            </div>-->
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                  
+                                    <label for="nomFoyer">Nom Foyer :</label>
+                                    <input matInput placeholder="Entrez le nom de foyer" type="text" class="form-control" id="nomFoyer" formControlName="nomFoyer" [highlightColor]="'#D0D3D4'" appClickHighlightInput>
+                                    <div *ngIf="foyerForm.get('nomFoyer')?.hasError('required') && foyerForm.get('nomFoyer')?.touched" class="text-danger">
+                                      Le champ Nom est requis.
+                                  </div>
+                                  <div *ngIf="foyerForm.get('nomFoyer')?.hasError('minlength') && foyerForm.get('nomFoyer')?.touched" class="text-danger">
+                                      Le champ Nom Foyer doit avoir au moins 2 caractères.
+                                  </div>
+                                  <div *ngIf="foyerForm.get('nomFoyer')?.valid && foyerForm.get('nomFoyer')?.touched">
+                                    <span style="color: green;">Nom Foyer est validé.</span>
+                                  </div>
+                                
+                                </div>
+                            </div>
+                          </div> 
+                          <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                 <br>
+                                 <br>
+                                    <label for="capaciteFoyer">Capacité Foyer:</label>
+                                    <input matInput placeholder=" Entrez la capacité de foyer" type="number" class="form-control" id="capaciteFoyer" formControlName="capaciteFoyer" [highlightColor]="'#D0D3D4'" appClickHighlightInput>
+                                    <div *ngIf="foyerForm.get('capaciteFoyer')?.hasError('required') && foyerForm.get('capaciteFoyer')?.touched" class="text-danger">
+                                        Le champ capacité est requis.
+                                    </div>
+                                    <div *ngIf="foyerForm.get('capaciteFoyer')?.valid && foyerForm.get('capaciteFoyer')?.touched">
+                                        <span style="color: green;">Capacité Foyer est validée.</span>
+                                    </div>
+                                    <br>
+                                    <br>
+                                
+                                </div>
+                                
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <label>SAVOIR:</label>
+                                 <br>
+                                 <br>
+                                     <textarea matInput placeholder="Ceci le formulaire d'ajout d'un nouveau foyer."></textarea>
+                                 
+                                    <!-- <div class="form-group">
+  
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            </div>
+                            <br>
+                            <br>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Ajouter</button>
+                            <div class="clearfix"></div>
+                            <div class="col-6">
+                                <button class="btn btn-primary" type="button" (click)="generatePDF()">Télécharger le formulaire PDF</button>
+                              </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+  </div>

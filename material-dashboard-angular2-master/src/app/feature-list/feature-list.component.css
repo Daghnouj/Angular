@@ -1,0 +1,72 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.h2 {
+    color: #ff3f9f; /* Pink color for h2 */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px; /* Increased margin to move it further down */
+    font-size: 36px; /* Increased font size */
+}
+
+.feature-list-container {
+    background-image: url('assets/img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align to the top */
+    padding: 60px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Define different colors for each button */
+.button-container button {
+    margin: 15px; /* Increased margin for better spacing */
+    padding: 15px 30px; /* Increased padding for larger buttons */
+    font-size: 18px; /* Increased font size for buttons */
+    font-weight: bold;
+    color: #8f3e3e;
+    border: none;
+    border-radius: 8px; /* Increased border radius for rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:nth-child(1) {
+    background-color: #ff99cc; /* Light pink color */
+}
+.button-container button:nth-child(2) {
+    background-color: #ffb3b3; /* Light red color */
+}
+.button-container button:nth-child(3) {
+    background-color: #99ff99; /* Light green color */
+}
+.button-container button:nth-child(4) {
+    background-color: #ffc368; /* Light orange color */
+}
+.button-container button:nth-child(5) {
+    background-color: #ae85d7; /* Light purple color */
+}
+
+.button-container button:hover {
+    filter: brightness(90%);
+}
+
+.divider {
+    height: 2px;
+    width: 80%;
+    background-color: #ecf0f1;
+}

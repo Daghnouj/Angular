@@ -1,0 +1,91 @@
+<!-- Stylesheet Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Scripts Bootstrap JS (jQuery doit être inclus avant Bootstrap JS) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+                        <ul class = "navbar-nav">
+                            <!-- Bouton Retour à l'accueil -->
+                            <li class="nav-item">
+                                <a routerLink="/features" class="nav-link">Accueil</a>
+                            </li>
+                            <li class = "nav-item">
+                                <a routerLink="etudiants" routerLinkActive="active" class="nav-link" >Etudiant List</a>
+                            </li>
+                            <li class = "nav-item">
+                                <a routerLink="/create-etudiant" routerLinkActive="active" class="nav-link" >Add Etudiant</a>
+                            </li>
+                            <div class="row">
+   
+    <div class="col-md-12">
+        <input type="text" [(ngModel)]="recherche" placeholder="Rechercher par ID" (input)="rechercher()">
+      </div>
+</div>
+                        </ul>
+                      </nav>
+                    
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Cin</th>
+                                        <th>Ecole</th>
+                                        <th>Date De Naissance</th>
+                                        <th>Image</th>
+                                        <th>Actions</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  appHighlight [highlightColor]="'pink'" *ngFor="let etudiant of etudiants | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength }"  [@fadeInOut] [@rowHover]>
+                                        <div *ngIf="errorMessage">
+                                            
+
+  <p>{{ errorMessage }}</p>
+</div>
+                                        <td>{{etudiant.idEtudiant}}</td>
+                                        <td>{{etudiant.nomEt}}</td>
+                                        <td>{{etudiant.prenomEt}}</td>
+                                        <td>{{etudiant.cin}}</td>
+                                        <td>{{etudiant.ecole}}</td>
+                                        <td>{{ etudiant.dateNaissance | date: 'dd/MM/yyyy' }}</td>
+                                       
+                                        <td>
+                                            <img  [src]="getImage(etudiant)" alt="Image" class="rounded" width="100" height="100">
+
+                                        </td>
+                                        
+                                         
+                                        
+                                        
+                                        <td>
+                                            <button (click)="updateEtudiant(etudiant.idEtudiant)" class="btn btn-info">Update</button>
+                                            <button (click)="deleteEtudiant(etudiant.idEtudiant)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                                            <button (click)="etudiantDetails(etudiant.idEtudiant)" class="btn btn-info" style="margin-left: 10px">View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                           
+                             <div class="pagination">
+                                <pagination-controls (pageChange)="page=$event"></pagination-controls>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

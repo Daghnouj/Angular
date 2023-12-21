@@ -1,0 +1,20 @@
+
+    .common-image {
+        display: block;
+        margin: 0 auto; /* Centre l'image horizontalement */
+        max-width: 600px; /* Ajustez la largeur maximale selon vos besoins */
+        width: 100%;
+        height: auto;
+    }
+
+    .university-image {
+        max-width: 700px; /* Ajustez la largeur spécifique pour l'image de l'université */
+    }
+
+    .block-image {
+        max-width: 600px; /* Ajustez la largeur spécifique pour l'image du bloc */
+    }
+
+    .foyer-image {
+        max-width: 650px; /* Ajustez la largeur spécifique pour l'image du foyer */
+    }

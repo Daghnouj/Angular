@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button (click)="goToUniversite()" class="btn btn-link nav-link">University List</button>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/features" class="nav-link">Accueil</a>
+    </li>
+    </ul>
+  </nav>
+  <br>
+  <br>
+  <br>
+  
+  <div [@fadeInOut] class="card">
+    <div class="card-body">
+      <h2 class="card-title">View Details</h2>
+  
+      <div class="image-container">
+        <img src="{{ imagePath }}" alt="Image" class="image">
+      </div>
+  
+      <div class="value">
+        <label class="label">Id:</label> {{universite.idUniversite}}
+      </div>
+  
+      <div class="value">
+        <label class="label">Nom:</label> {{universite.nomUniversite}}
+      </div>
+  
+      <div class="value">
+        <label class="label">Adresse:</label> {{universite.adresse}}
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,39 @@
+<div>
+  <h2>Profil de l'étudiant</h2>
+ 
+  <!-- Formulaire pour récupérer les données par ID -->
+  <form (submit)="getEtudiantById()">
+    <label>ID de l'étudiant: </label>
+    <input type="number" [(ngModel)]="etudiantId" name="etudiantId" required>
+    <button type="submit">Récupérer par ID</button>
+  </form>
+ 
+ 
+ 
+  <!-- Affichage des données de l'étudiant -->
+  <div *ngIf="etudiant">
+    <h3>Informations de l'étudiant</h3>
+    <p>Nom: {{ etudiant.nomEt}}</p>
+    <p>Prénom: {{ etudiant.prenomEt }}</p>
+    <p>CIN: {{ etudiant.cin }}</p>
+    <p>Ecole: {{ etudiant.ecole }}</p>
+    <p>Date de Naissance: {{ etudiant.dateNaissance | date:'yyyy-MM-dd' }}</p>
+    <!-- Ajoutez d'autres champs selon votre modèle Etudiant -->
+  </div>
+  
+  <div class="mb-3 text-left">
+    <label class="fw-bold">Photo:</label>
+    <!-- Vérifiez si l'objet etudiant.image est présent -->
+    <ng-container *ngIf="etudiant.image">
+        <!-- Vérifiez si la propriété 'data' de l'objet image est présente -->
+        <img *ngIf="etudiant.image.data" [src]="getImage(etudiant)" alt="Etudiant Photo" class="img-fluid" style="max-width: 300px; max-height: 300px; display: inline-block;">
+        <!-- Si 'data' n'est pas présent dans l'objet image -->
+        <p *ngIf="!etudiant.image.data" class="form-control-plaintext">No photo available</p>
+    </ng-container>
+    <!-- Si l'objet etudiant.image n'est pas présent -->
+    <p *ngIf="!etudiant.image" class="form-control-plaintext">No photo available</p>
+</div>
+<div class="col-6">
+  <button class="btn btn-primary" type="button" (click)="generatePDF()">Télécharger le formulaire PDF</button>
+</div>
+</div>

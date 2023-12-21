@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <button (click)="goToUniversite()" class="btn btn-link nav-link">University List</button>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/icons" class="nav-link">Accueil</a>
+    </li>
+  </ul>
+</nav>
+
+<div [@moveInLeft]>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="text-center">Add university</h3>
+
+        <form [formGroup]="universiteForm" (ngSubmit)="saveUniversite()">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="nomUniversite">Nom</label>
+                <input type="text" class="form-control" id="nomUniversite" formControlName="nomUniversite" placeholder="Entrez le nom du universite">
+                <small *ngIf="universiteForm.controls.nomUniversite.valid" style="color: green;">Nom du universite valide.</small>
+                <small *ngIf="universiteForm.controls.nomUniversite.errors?.required" style="color: red;">Nom du universite est obligatoire.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="adresse">Adresse</label>
+                <input type="text" class="form-control" id="adresse" formControlName="adresse" placeholder="Entrez l'adresse">
+                <small *ngIf="universiteForm.controls.adresse.valid" style="color: green;">Adresse du universite valide.</small>
+                <small *ngIf="universiteForm.controls.adresse.errors?.required" style="color: red;">Adresse du universite est obligatoire.</small>
+              </div>
+
+              <button type="submit" [disabled]="universiteForm.invalid" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-primary" type="button" (click)="generatePDF()">Télécharger le formulaire PDF</button>
+  </div>
+</div>

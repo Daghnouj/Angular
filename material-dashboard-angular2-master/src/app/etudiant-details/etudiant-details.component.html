@@ -1,0 +1,92 @@
+<!-- Stylesheet Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Scripts Bootstrap JS (jQuery doit être inclus avant Bootstrap JS) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Ajoutez cela à votre fichier index.html ou équivalent -->
+<script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
+
+
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="/features" class="nav-link">Accueil</a>
+        </li>
+      <li class="nav-item">
+        <button (click)="goToEtudiant()" class="btn btn-link nav-link">Etudiant List</button>
+      </li>
+      
+      <li class="nav-item">
+              <a routerLink="/create-etudiant" routerLinkActive="active" class="nav-link">Add Etudiant</a>
+          </li> 
+    </ul>
+  </nav>
+  
+
+<div class="card border-primary mb-3">
+    <div class="card-header">
+        <h5 class="card-title text-primary">Détails de l'Étudiant</h5>
+    </div>
+   <!--div class="mb-3">
+                    <label class="fw-bold">Photo:</label>
+                     <!-Check if the etudiant object has an 'image' property->
+                    <img *ngIf="etudiant.image" [src]="getImage(etudiant.image)" alt="Etudiant Photo" class="img-fluid">
+                    <p *ngIf="!etudiant.image" class="form-control-plaintext">No photo available</p>
+                </div--> 
+                <div class="mb-3 text-left">
+                    <label class="fw-bold">Photo:</label>
+                    <!-- Vérifiez si l'objet etudiant.image est présent -->
+                    <ng-container *ngIf="etudiant.image">
+                        <!-- Vérifiez si la propriété 'data' de l'objet image est présente -->
+                        <img *ngIf="etudiant.image.data" [src]="getImage(etudiant)" alt="Etudiant Photo" class="img-fluid" style="max-width: 300px; max-height: 300px; display: inline-block;">
+                        <!-- Si 'data' n'est pas présent dans l'objet image -->
+                        <p *ngIf="!etudiant.image.data" class="form-control-plaintext">No photo available</p>
+                    </ng-container>
+                    <!-- Si l'objet etudiant.image n'est pas présent -->
+                    <p *ngIf="!etudiant.image" class="form-control-plaintext">No photo available</p>
+                </div>
+                
+
+                
+                
+    
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="fw-bold">Id:</label>
+                    <p class="form-control-plaintext">{{ etudiant.idEtudiant }}</p>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="fw-bold">Prénom:</label>
+                    <p class="form-control-plaintext">{{ etudiant.prenomEt }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Nom:</label>
+                    <p class="form-control-plaintext">{{ etudiant.nomEt }}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="fw-bold">CIN:</label>
+                    <p class="form-control-plaintext">{{ etudiant.cin }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">École:</label>
+                    <p class="form-control-plaintext">{{ etudiant.ecole }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Date de Naissance:</label>
+                    <p class="form-control-plaintext">{{ etudiant.dateNaissance | date:'yyyy-MM-dd' }}</p>
+                  </div>
+                  
+                
+              
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+       <button (click)="goToBloc()" class="btn btn-link nav-link">Bloc List</button>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/features" class="nav-link">Accueil</a>
+  </li>
+  </ul>
+</nav>
+
+<div [@fadeInOut] class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3 class="text-center">Update Bloc</h3>
+
+      <form [formGroup]="blocForm" (ngSubmit)="onSubmit()">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="nomBloc">Nom</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nomBloc"
+                formControlName="nomBloc"
+                placeholder="Enter bloc name"
+              />
+              <small *ngIf="blocForm.controls.nomBloc.valid">
+                <span style="color: green;">Bloc name is valid.</span>
+              </small>
+              <small *ngIf="blocForm.controls.nomBloc.errors?.required">
+                <span style="color: red;">Bloc name is required.</span>
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label for="capaciteBloc">Capacity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="capaciteBloc"
+                formControlName="capaciteBloc"
+                placeholder="Enter bloc capacity"
+              />
+              <small *ngIf="blocForm.controls.capaciteBloc.valid">
+                <span style="color: green;">Bloc capacity is valid.</span>
+              </small>
+              <small *ngIf="blocForm.controls.capaciteBloc.errors?.required">
+                <span style="color: red;">Bloc capacity is required.</span>
+              </small>
+              <small *ngIf="blocForm.controls.capaciteBloc.errors?.pattern">
+                <span style="color: red;">Bloc capacity must be a number.</span>
+              </small>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="blocForm.invalid">
+              <i class="fas fa-sync-alt" style="font-size: 1.25rem;"></i>
+              <img src="./assets/icons/update.jpg" alt="update icon" width="20px" height="20px">
+              Update
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-primary" type="button" (click)="generatePDF()">Télécharger le formulaire PDF</button>
+  </div>
+</div>

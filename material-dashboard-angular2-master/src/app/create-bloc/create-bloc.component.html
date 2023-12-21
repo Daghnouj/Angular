@@ -1,0 +1,62 @@
+<!-- create-bloc.component.html -->
+
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <button (click)="goToBloc()" class="btn btn-link nav-link">Bloc List</button>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/features" class="nav-link">Accueil</a>
+  </li>
+  </ul>
+</nav>
+
+<div [@fadeInOut]="animationState" class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3 class="text-center">Add Bloc</h3>
+
+      <form [formGroup]="blocForm" (ngSubmit)="onSubmit()">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="nomBloc">Nom</label>
+              <input type="text" class="form-control" id="nomBloc" formControlName="nomBloc" placeholder="Entrez le nom du bloc">
+              <small *ngIf="blocForm.controls.nomBloc.valid">
+                <span style="color: green;">Nom du bloc valide.</span>
+              </small>
+              <small *ngIf="blocForm.controls.nomBloc.errors?.required">
+                <span style="color: red;">Nom du bloc est obligatoire.</span>
+              </small>
+              <small *ngIf="blocForm.controls.nomBloc.errors?.maxlength">
+                <span style="color: red;">Le nom du bloc ne doit pas dépasser 20 caractères.</span>
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label for="capaciteBloc">Capacité</label>
+              <input type="number" class="form-control" id="capaciteBloc" formControlName="capaciteBloc" placeholder="Entrez la capacité du bloc">
+              <small *ngIf="blocForm.controls.capaciteBloc.valid">
+                <span style="color: green;">Capacité du bloc valide.</span>
+              </small>
+              <small *ngIf="blocForm.controls.capaciteBloc.errors?.required">
+                <span style="color: red;">Capacité du bloc est obligatoire.</span>
+              </small>
+              <small *ngIf="blocForm.controls.capaciteBloc.errors?.pattern">
+                <span style="color: red;">Capacité du bloc doit être un nombre.</span>
+              </small>
+            </div>
+
+            <button [disabled]="blocForm.invalid" type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary" type="button" (click)="generatePDF()">Télécharger le formulaire PDF</button>
+        </div>
+      </form>
+     
+    </div>
+   
+  </div>
+  
+</div>

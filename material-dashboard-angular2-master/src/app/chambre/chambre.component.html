@@ -1,0 +1,62 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a routerLink="/chambre" routerLinkActive="active" class="nav-link">Chambre List</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/create-chambre" routerLinkActive="active" class="nav-link">Add Chambre</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/features" class="nav-link">Accueil</a>
+              </li>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" [(ngModel)]="recherche" placeholder="Rechercher par ID" (input)="rechercher()">
+                </div>
+              </div>
+            </ul>
+          </nav>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table" *ngIf="chambre && chambre.length > 0">
+                <thead class="text-primary">
+                  <tr>
+                    <th>ID</th>
+                    <th>Numero</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr appHighlight [highlightColor]="'pink'" *ngFor="let c of chambre | paginate: { itemsPerPage: pageSize, currentPage: p }"
+                    [@fadeInOut] [@rowHover]>
+                    <div *ngIf="errorMessage">
+                      <p>{{ errorMessage }}</p>
+                    </div>
+                    <td>{{c.idChambre}}</td>
+                    <td>{{c.numeroChambre}}</td>
+                    <td>{{c.typeC}}</td>
+                    <td>
+                      <button (click)="modifyChambre(c.idChambre)" class="btn btn-info">Update</button>
+                      <button (click)="removeChambre(c.idChambre)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                      <button (click)="chambreDetails(c.idChambre)" class="btn btn-info" style="margin-left: 10px">View</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    
